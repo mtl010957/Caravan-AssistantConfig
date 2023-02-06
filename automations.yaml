@@ -1,1 +1,15 @@
-[]
+- id: '1675712583101'
+  alias: Level Display Toggle
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.level_display_button
+    to: 'on'
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.level_display_part_1
+  mode: single
