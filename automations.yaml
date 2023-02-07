@@ -1,5 +1,5 @@
 - id: '1675712583101'
-  alias: Level Display Toggle
+  alias: Level Display Button Toggle
   description: ''
   trigger:
   - platform: state
@@ -12,4 +12,28 @@
     data: {}
     target:
       entity_id: light.level_display_part_1
+  mode: single
+- id: '1675800634410'
+  alias: Level Display Switch Control
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.level_display_switch
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: input_boolean.level_display_switch
+      state: 'on'
+    then:
+    - service: light.turn_on
+      data: {}
+      target:
+        entity_id: light.level_display_part_6
+    else:
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.level_display_part_6
   mode: single
