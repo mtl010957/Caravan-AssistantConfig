@@ -1,0 +1,15 @@
+  - sensor:
+      - unique_id: propane_percent
+        name: "Propane Percent"
+        unit_of_measurement: '%'
+        icon: "mdi:gauge"
+        state: >
+          {% set h = states("sensor.propane_sensor_tank_level") | float %}
+          {% set r = 4.0 %}
+          {% set rh = r - h %}
+          {% set pisquare = pi**2 %}
+          {% set rsquare = r**2 %}
+          {% set pirsquare = pi * rsquare %}
+          {% set term1 =  acos(rh / r) * rsquare %}
+          {% set term2 = rh * sqrt((2*r*h) - (h**2)) %}
+          {{ ((term1 - term2)/pirsquare * 100.0) | round() }}
