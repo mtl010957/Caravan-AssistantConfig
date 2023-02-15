@@ -8,32 +8,239 @@
     to: 'on'
   condition: []
   action:
-  - service: light.toggle
+  - service: input_boolean.toggle
     data: {}
     target:
-      entity_id: light.level_display_part_1
+      entity_id: input_boolean.level_display_switch
   mode: single
-- id: '1675800634410'
-  alias: Level Display Switch Control
+- id: '1675963006760'
+  alias: Level Display Switch Off
   description: ''
   trigger:
   - platform: state
     entity_id:
     - input_boolean.level_display_switch
+    to: 'off'
   condition: []
   action:
-  - if:
-    - condition: state
-      entity_id: input_boolean.level_display_switch
-      state: 'on'
-    then:
-    - service: light.turn_on
-      data: {}
-      target:
-        entity_id: light.level_display_part_6
-    else:
-    - service: light.turn_off
-      data: {}
-      target:
-        entity_id: light.level_display_part_6
+  - service: light.turn_off
+    data: {}
+    target:
+      device_id: 4fe16d05ffeaa62033641715a8a8df30
+  mode: single
+- id: '1675963415480'
+  alias: Level Display Pitch
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.level_sensor_pitch
+  condition:
+  - condition: state
+    entity_id: input_boolean.level_display_switch
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_pitch
+        above: 2
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: yellow
+        target:
+          entity_id: light.level_display_part_1
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.level_display_part_2
+          - light.level_display_part_3
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_pitch
+        above: 1
+        below: 2
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: yellow
+          brightness_pct: 50
+        target:
+          entity_id: light.level_display_part_1
+      - service: light.turn_on
+        data:
+          color_name: green
+          brightness_pct: 50
+        target:
+          entity_id: light.level_display_part_2
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.level_display_part_3
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_pitch
+        above: -1
+        below: 1
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: green
+        target:
+          entity_id: light.level_display_part_2
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.level_display_part_1
+          - light.level_display_part_3
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_pitch
+        above: -2
+        below: -1
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: red
+          brightness_pct: 50
+        target:
+          entity_id: light.level_display_part_3
+      - service: light.turn_on
+        data:
+          color_name: green
+          brightness_pct: 50
+        target:
+          entity_id: light.level_display_part_2
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.level_display_part_1
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_pitch
+        below: -2
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: red
+        target:
+          entity_id: light.level_display_part_3
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.level_display_part_1
+          - light.level_display_part_2
+  mode: single
+- id: '1675963902468'
+  alias: Level Display Roll
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.level_sensor_roll
+  condition:
+  - condition: state
+    entity_id: input_boolean.level_display_switch
+    state: 'on'
+  action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_roll
+        above: 2
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: yellow
+        target:
+          entity_id: light.level_display_part_4
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.level_display_part_5
+          - light.level_display_part_6
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_roll
+        above: 1
+        below: 2
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: yellow
+          brightness_pct: 50
+        target:
+          entity_id:
+          - light.level_display_part_4
+      - service: light.turn_on
+        data:
+          color_name: green
+          brightness_pct: 50
+        target:
+          entity_id: light.level_display_part_5
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.level_display_part_6
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_roll
+        above: -1
+        below: 1
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: green
+        target:
+          entity_id: light.level_display_part_5
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.level_display_part_4
+          - light.level_display_part_6
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_roll
+        below: -1
+        above: -2
+      sequence:
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: light.level_display_part_4
+      - service: light.turn_on
+        data:
+          color_name: green
+          brightness_pct: 50
+        target:
+          entity_id: light.level_display_part_5
+      - service: light.turn_on
+        data:
+          color_name: red
+          brightness_pct: 50
+        target:
+          entity_id: light.level_display_part_6
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.level_sensor_roll
+        below: -2
+      sequence:
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id:
+          - light.level_display_part_4
+          - light.level_display_part_5
+      - service: light.turn_on
+        data:
+          color_name: red
+        target:
+          entity_id: light.level_display_part_6
   mode: single
