@@ -44,7 +44,7 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch
-        above: 2
+        above: 4
       sequence:
       - service: light.turn_on
         data:
@@ -60,8 +60,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch
-        above: 1
-        below: 2
+        above: 2
+        below: 4
       sequence:
       - service: light.turn_on
         data:
@@ -82,8 +82,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch
-        above: -1
-        below: 1
+        above: -2
+        below: 2
       sequence:
       - service: light.turn_on
         data:
@@ -99,8 +99,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch
-        above: -2
-        below: -1
+        above: -4
+        below: -2
       sequence:
       - service: light.turn_on
         data:
@@ -121,7 +121,7 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch
-        below: -2
+        below: -4
       sequence:
       - service: light.turn_on
         data:
@@ -151,7 +151,7 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll
-        above: 2
+        above: 4
       sequence:
       - service: light.turn_on
         data:
@@ -167,8 +167,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll
-        above: 1
-        below: 2
+        above: 2
+        below: 4
       sequence:
       - service: light.turn_on
         data:
@@ -191,8 +191,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll
-        above: -1
-        below: 1
+        above: -2
+        below: 2
       sequence:
       - service: light.turn_on
         data:
@@ -208,8 +208,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll
-        below: -1
-        above: -2
+        below: -2
+        above: -4
       sequence:
       - service: light.turn_off
         data: {}
@@ -230,7 +230,7 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll
-        below: -2
+        below: -4
       sequence:
       - service: light.turn_off
         data: {}
