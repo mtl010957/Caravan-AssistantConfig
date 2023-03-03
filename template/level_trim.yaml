@@ -1,0 +1,14 @@
+  - sensor:
+      - unique_id: level_sensor_pitch_trimmed
+        name: "Level Sensor Pitch Trimmed"
+        unit_of_measurement: '°'
+        icon: "mdi:gauge"
+        state: >
+          {{ (states('sensor.level_sensor_pitch') | float(default=0) + states('input_number.pitch_trim') | float(default=0)) | round(2) }}
+  - sensor:
+      - unique_id: level_sensor_roll_trimmed
+        name: "Level Sensor Roll Trimmed"
+        unit_of_measurement: '°'
+        icon: "mdi:gauge"
+        state: >
+          {{ (states('sensor.level_sensor_roll') | float(default=0) + states('input_number.roll_trim') | float(default=0)) | round(2) }}
