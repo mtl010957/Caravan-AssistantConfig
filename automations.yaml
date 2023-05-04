@@ -34,7 +34,7 @@
   trigger:
   - platform: state
     entity_id:
-    - sensor.level_sensor_pitch
+    - sensor.level_sensor_pitch_trimmed
   condition:
   - condition: state
     entity_id: input_boolean.level_display_switch
@@ -43,7 +43,7 @@
   - choose:
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_pitch
+        entity_id: sensor.level_sensor_pitch_trimmed
         above: 4
       sequence:
       - service: light.turn_on
@@ -59,7 +59,7 @@
           - light.level_display_part_3
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_pitch
+        entity_id: sensor.level_sensor_pitch_trimmed
         above: 2
         below: 4
       sequence:
@@ -81,7 +81,7 @@
           entity_id: light.level_display_part_3
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_pitch
+        entity_id: sensor.level_sensor_pitch_trimmed
         above: -2
         below: 2
       sequence:
@@ -98,7 +98,7 @@
           - light.level_display_part_3
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_pitch
+        entity_id: sensor.level_sensor_pitch_trimmed
         above: -4
         below: -2
       sequence:
@@ -120,7 +120,7 @@
           entity_id: light.level_display_part_1
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_pitch
+        entity_id: sensor.level_sensor_pitch_trimmed
         below: -4
       sequence:
       - service: light.turn_on
@@ -141,7 +141,7 @@
   trigger:
   - platform: state
     entity_id:
-    - sensor.level_sensor_roll
+    - sensor.level_sensor_roll_trimmed
   condition:
   - condition: state
     entity_id: input_boolean.level_display_switch
@@ -150,7 +150,7 @@
   - choose:
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_roll
+        entity_id: sensor.level_sensor_roll_trimmed
         above: 4
       sequence:
       - service: light.turn_on
@@ -166,7 +166,7 @@
           - light.level_display_part_6
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_roll
+        entity_id: sensor.level_sensor_roll_trimmed
         above: 2
         below: 4
       sequence:
@@ -190,7 +190,7 @@
           - light.level_display_part_6
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_roll
+        entity_id: sensor.level_sensor_roll_trimmed
         above: -2
         below: 2
       sequence:
@@ -207,7 +207,7 @@
           - light.level_display_part_6
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_roll
+        entity_id: sensor.level_sensor_roll_trimmed
         below: -2
         above: -4
       sequence:
@@ -229,7 +229,7 @@
           entity_id: light.level_display_part_6
     - conditions:
       - condition: numeric_state
-        entity_id: sensor.level_sensor_roll
+        entity_id: sensor.level_sensor_roll_trimmed
         below: -4
       sequence:
       - service: light.turn_off
