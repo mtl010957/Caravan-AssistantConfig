@@ -13,6 +13,7 @@ tts:
 recorder: !include recorder.yaml
 
 automation: !include automations.yaml
+command_line: !include_dir_merge_list command_line
 script: !include scripts.yaml
 scene: !include scenes.yaml
 sensor: !include_dir_merge_list sensor
