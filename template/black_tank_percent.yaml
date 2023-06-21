@@ -5,4 +5,4 @@
         icon: "mdi:gauge"
         state: >
           {% set t = 7.0 %}
-          {{ (states("sensor.propane_sensor_tank_level") | float(default=0.0) / t * 100.0) | round() }}
+          {{ ((states("sensor.propane_sensor_tank_level") | float(default=0.0)) / t * 100.0) | round() }}
