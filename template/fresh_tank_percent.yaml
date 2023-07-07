@@ -1,0 +1,15 @@
+  - sensor:
+      - unique_id: fresh_tank_percent
+        name: "Fresh Tank Percent"
+        unit_of_measurement: '%'
+        icon: "mdi:gauge"
+        state: >
+          {% if is_state("binary_sensor.fresh_tank_liquid_level_sensor_1","on") -%}
+            75
+          {%- elif is_state("binary_sensor.fresh_tank_liquid_level_sensor_2","on") -%}
+            50
+          {%- elif is_state("binary_sensor.fresh_tank_liquid_level_sensor_3","on") -%}
+            25
+          {%- else -%}
+            0
+          {%- endif %}
