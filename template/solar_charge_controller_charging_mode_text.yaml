@@ -4,12 +4,12 @@
         unit_of_measurement: ''
         icon: "mdi:lightning-bolt-circle"
         state: >
-          {% if is_state("sensor.solar_charge_controller_charging_mode","0") -%}
+          {% if is_state("sensor.solar_charge_controller_charging_mode","0") %}
             OFF
-          {%- elif is_state("sensor.solar_charge_controller_charging_mode","1") -%}
+          {% elif is_state("sensor.solar_charge_controller_charging_mode","1") %}
             PWM
-          {%- elif is_state("sensor.solar_charge_controller_charging_mode","2") -%}
+          {% elif is_state("sensor.solar_charge_controller_charging_mode","2") %}
             MPPT
-          {%- else -%}
+          {% else %}
             ERR
-          {%- endif %}
+          {% endif %}
