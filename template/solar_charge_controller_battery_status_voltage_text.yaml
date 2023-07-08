@@ -1,7 +1,7 @@
   - sensor:
       - unique_id: solar_charge_controller_battery_status_voltage_text
         name: "Solar Charge Controller Battery Status Voltage Text"
-        icon: "mdi:battery-circle"
+        icon: "mdi:battery-charging"
         state: >
           {% if is_state("sensor.solar_charge_controller_battery_status_voltage","0") %}
             NORMAL
