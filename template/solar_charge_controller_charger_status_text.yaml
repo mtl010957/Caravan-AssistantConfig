@@ -1,0 +1,17 @@
+  - sensor:
+      - unique_id: solar_charge_controller_charger_status_text
+        name: "Solar Charge Controller Charger Status Text"
+        icon: "mdi:lightning-bolt"
+        state: >
+          {% set status = (states("sensor.solar_charge_controller_charger_status") | int / 4) | int | bitwise_and(3) %}
+          {% if status == 0 %}
+            NONE
+          {% elif status == 1 %}
+            FLOAT
+          {% elif status == 2 %}
+            BOOST
+          {% elif status == 3 %}
+            EQUALIZE
+          {% else %}
+            ERR
+          {% endif %}
