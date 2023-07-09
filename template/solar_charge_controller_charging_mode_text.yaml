@@ -1,7 +1,7 @@
   - sensor:
       - unique_id: solar_charge_controller_charging_mode_text
         name: "Solar Charge Controller Charging Mode Text"
-        icon: "mdi:lightning-bolt-circle"
+        icon: "mdi:solar-power-variant"
         state: >
           {% if is_state("sensor.solar_charge_controller_charging_mode","0") %}
             OFF
