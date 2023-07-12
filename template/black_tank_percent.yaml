@@ -6,4 +6,4 @@
         state: >
           {% set h = 7.0 %}
           {% set z = 0.6 %}
-          {{ (((states("sensor.black_tank_level") | float(default=0.0)) - z) / h * 100.0) | round() }}
+          {{ (((states("sensor.black_tank_level") | float(default=z)) - z) / h * 100.0) | round() }}
