@@ -5,11 +5,11 @@
         icon: "mdi:gauge"
         state: >
           {% if is_state("binary_sensor.fresh_tank_liquid_level_sensor_1","on") -%}
-            75
+            100
           {%- elif is_state("binary_sensor.fresh_tank_liquid_level_sensor_2","on") -%}
-            50
+            67
           {%- elif is_state("binary_sensor.fresh_tank_liquid_level_sensor_3","on") -%}
-            25
+            33
           {%- else -%}
             0
           {%- endif %}
