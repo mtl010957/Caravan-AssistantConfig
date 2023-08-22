@@ -1,0 +1,79 @@
+- sensor:
+  - name: "GJ-12V200AH Capacity Remaining"
+    unique_id: "gj_12v200ah_capacity_remaining"
+    unit_of_measurement: "Ah"
+    state_class: measurement
+    state: >
+      {% set capacity_remaining_048 = states('sensor.gj_12v100ah_0526_048_capacity_remaining') | float %}
+      {% set capacity_remaining_161 = states('sensor.gj_12v100ah_0526_161_capacity_remaining') | float %}
+      {{  (capacity_remaining_048 + capacity_remaining_161) | round(2, default=0) }}
+  - name: "GJ-12V200AH Nonimal Capacity"
+    unique_id: "gj_12v200ah_nominal_capacity"
+    unit_of_measurement: "Ah"
+    state_class: measurement
+    state: >
+      {% set nominal_capacity_048 = states('sensor.gj_12v100ah_0526_048_nominal_capacity') | float %}
+      {% set nominal_capacity_161 = states('sensor.gj_12v100ah_0526_161_nominal_capacity') | float %}
+      {{  (nominal_capacity_048 + nominal_capacity_161) | round(2, default=0) }}
+  - name: "GJ-12V200AH Current"
+    unique_id: "gj_12v200ah_current"
+    unit_of_measurement: "A"
+    device_class: current
+    state_class: measurement
+    state: >
+      {% set current_048 = states('sensor.gj_12v100ah_0526_048_current') | float %}
+      {% set current_161 = states('sensor.gj_12v100ah_0526_161_current') | float %}
+      {{  ((current_048 + current_161) / 2) | round(2, default=0) }}
+  - name: "GJ-12V200AH Power"
+    unique_id: "gj_12v200ah_power"
+    unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+    state: >
+      {% set power_048 = states('sensor.gj_12v100ah_0526_048_power') | float %}
+      {% set power_161 = states('sensor.gj_12v100ah_0526_161_power') | float %}
+      {{  (power_048 + power_161) | round(2, default=0) }}
+  - name: "GJ-12V200AH State Of Charge"
+    unique_id: "gj_12v200ah_state_of_charge"
+    unit_of_measurement: "%"
+    device_class: battery
+    state_class: measurement
+    state: >
+      {% set state_of_charge_048 = states('sensor.gj_12v100ah_0526_048_state_of_charge') | float %}
+      {% set state_of_charge_161 = states('sensor.gj_12v100ah_0526_161_state_of_charge') | float %}
+      {{  ((state_of_charge_048 + state_of_charge_161) / 2) | round(2, default=0) }}
+  - name: "GJ-12V200AH Total Voltage"
+    unique_id: "gj_12v200ah_total_voltage"
+    unit_of_measurement: "V"
+    device_class: voltage
+    state_class: measurement
+    state: >
+      {% set total_voltage_048 = states('sensor.gj_12v100ah_0526_048_total_voltage') | float %}
+      {% set total_voltage_161 = states('sensor.gj_12v100ah_0526_161_total_voltage') | float %}
+      {{  ((total_voltage_048 + total_voltage_161) / 2) | round(2, default=0) }}
+  - name: "GJ-12V200AH Charging Power"
+    unique_id: "gj_12v200ah_charging_power"
+    unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+    state: >
+      {% set charging_power_048 = states('sensor.gj_12v100ah_0526_048_charging_power') | float %}
+      {% set charging_power_161 = states('sensor.gj_12v100ah_0526_161_charging_power') | float %}
+      {{  (charging_power_048 + charging_power_161) | round(2, default=0) }}
+  - name: "GJ-12V200AH Discharging Power"
+    unique_id: "gj_12v200ah_discharging_power"
+    unit_of_measurement: "W"
+    device_class: power
+    state_class: measurement
+    state: >
+      {% set discharging_power_048 = states('sensor.gj_12v100ah_0526_048_discharging_power') | float %}
+      {% set discharging_power_161 = states('sensor.gj_12v100ah_0526_161_discharging_power') | float %}
+      {{  (discharging_power_048 + discharging_power_161) | round(2, default=0) }}
+  - name: "GJ-12V200AH Charging Cycles"
+    unique_id: "gj_12v200ah_charging_cycles"
+    state_class: measurement
+    state: >
+      {% set charging_cycles_048 = states('sensor.gj_12v100ah_0526_048_charging_cycles') | float %}
+      {% set charging_cycles_161 = states('sensor.gj_12v100ah_0526_161_charging_cycles') | float %}
+      {{  ((charging_cycles_048 + charging_cycles_161) / 2) | round(2, default=0) }}
+      
