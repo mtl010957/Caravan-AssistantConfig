@@ -244,3 +244,23 @@
         target:
           entity_id: light.level_display_part_6
   mode: single
+- id: '1693610638071'
+  alias: Converter Energy Meter Force Update If Unavailable
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{ states(''sensor.converter_energy_meter'') == ''unavailable''
+      }}'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+  condition: []
+  action:
+  - service: homeassistant.update_entity
+    data: {}
+    target:
+      entity_id:
+      - sensor.converter_energy
+      - sensor.converter_energy_meter
+  mode: single
