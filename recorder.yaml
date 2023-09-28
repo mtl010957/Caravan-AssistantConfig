@@ -1,8 +1,12 @@
 db_url: !secret recorder_db_url
-purge_keep_days: 5
+purge_keep_days: 3
 exclude:
   entity_globs:
     - "sensor.level_sensor_*"
     - "device_tracker.*"
     - "sun.sun"
     - "weather.*"
+    - "device_tracker.*"
+    - "sensor.*_estimated_distance"
+    - "sensor.sun_*"
+    - "update.*"
