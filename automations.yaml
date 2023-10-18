@@ -35,6 +35,15 @@
   - platform: state
     entity_id:
     - sensor.level_sensor_pitch_trimmed
+  - platform: state
+    entity_id:
+    - input_boolean.level_display_switch
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
   condition:
   - condition: state
     entity_id: input_boolean.level_display_switch
@@ -44,11 +53,11 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch_trimmed
-        above: 4
+        above: 2
       sequence:
       - service: light.turn_on
         data:
-          color_name: yellow
+          color_name: red
         target:
           entity_id: light.level_display_part_1
       - service: light.turn_off
@@ -60,8 +69,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch_trimmed
-        above: 2
-        below: 4
+        above: 0.5
+        below: 2
       sequence:
       - service: light.turn_on
         data:
@@ -71,7 +80,7 @@
           entity_id: light.level_display_part_1
       - service: light.turn_on
         data:
-          color_name: green
+          color_name: yellow
           brightness_pct: 50
         target:
           entity_id: light.level_display_part_2
@@ -82,8 +91,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch_trimmed
-        above: -2
-        below: 2
+        above: -0.5
+        below: 0.5
       sequence:
       - service: light.turn_on
         data:
@@ -99,18 +108,18 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch_trimmed
-        above: -4
-        below: -2
+        above: -2
+        below: -0.5
       sequence:
       - service: light.turn_on
         data:
-          color_name: red
+          color_name: yellow
           brightness_pct: 50
         target:
           entity_id: light.level_display_part_3
       - service: light.turn_on
         data:
-          color_name: green
+          color_name: yellow
           brightness_pct: 50
         target:
           entity_id: light.level_display_part_2
@@ -121,7 +130,7 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_pitch_trimmed
-        below: -4
+        below: -2
       sequence:
       - service: light.turn_on
         data:
@@ -142,6 +151,15 @@
   - platform: state
     entity_id:
     - sensor.level_sensor_roll_trimmed
+  - platform: state
+    entity_id:
+    - input_boolean.level_display_switch
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
   condition:
   - condition: state
     entity_id: input_boolean.level_display_switch
@@ -151,11 +169,11 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll_trimmed
-        above: 4
+        above: 2
       sequence:
       - service: light.turn_on
         data:
-          color_name: yellow
+          color_name: red
         target:
           entity_id: light.level_display_part_4
       - service: light.turn_off
@@ -167,8 +185,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll_trimmed
-        above: 2
-        below: 4
+        above: 0.5
+        below: 2
       sequence:
       - service: light.turn_on
         data:
@@ -179,7 +197,7 @@
           - light.level_display_part_4
       - service: light.turn_on
         data:
-          color_name: green
+          color_name: yellow
           brightness_pct: 50
         target:
           entity_id: light.level_display_part_5
@@ -191,8 +209,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll_trimmed
-        above: -2
-        below: 2
+        above: -0.5
+        below: 0.5
       sequence:
       - service: light.turn_on
         data:
@@ -208,8 +226,8 @@
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll_trimmed
-        below: -2
-        above: -4
+        below: -0.5
+        above: -2
       sequence:
       - service: light.turn_off
         data: {}
@@ -217,20 +235,20 @@
           entity_id: light.level_display_part_4
       - service: light.turn_on
         data:
-          color_name: green
+          color_name: yellow
           brightness_pct: 50
         target:
           entity_id: light.level_display_part_5
       - service: light.turn_on
         data:
-          color_name: red
+          color_name: yellow
           brightness_pct: 50
         target:
           entity_id: light.level_display_part_6
     - conditions:
       - condition: numeric_state
         entity_id: sensor.level_sensor_roll_trimmed
-        below: -4
+        below: -2
       sequence:
       - service: light.turn_off
         data: {}
