@@ -6,10 +6,6 @@ default_config:
 frontend:
   themes: !include_dir_merge_named themes
 
-# Text to speech
-tts:
-  - platform: google_translate
-
 recorder: !include recorder.yaml
 
 automation: !include automations.yaml
@@ -23,3 +19,6 @@ remote_homeassistant:
   instances:
 
 shell_command: !include shell_command.yaml
+
+# Load custom services for setting timezone, etc.
+#arvee:
