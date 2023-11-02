@@ -20,5 +20,3 @@ remote_homeassistant:
 
 shell_command: !include shell_command.yaml
 
-# Load custom services for setting timezone, etc.
-#arvee:
