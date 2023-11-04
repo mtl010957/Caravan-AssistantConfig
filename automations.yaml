@@ -294,6 +294,6 @@
     data_template:
       latitude: '{{ state_attr(''device_tracker.gps_location'', ''latitude'') }}'
       longitude: '{{ state_attr(''device_tracker.gps_location'', ''longitude'') }}'
-      elevation: '{{ state_attr(''device_tracker.gps_location'', ''altitude'') | int
+      elevation: '{{ state_attr(''device_tracker.gps_location'', ''altitude'') | int(default=0)
         }}'
   mode: single
