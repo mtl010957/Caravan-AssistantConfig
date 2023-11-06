@@ -1,9 +1,0 @@
-  - sensor:
-      - unique_id: black_tank_percent
-        name: "Black Tank Percent"
-        unit_of_measurement: '%'
-        icon: "mdi:gauge"
-        state: >
-          {% set h = 7.0 %}
-          {% set z = 0.2 %}
-          {{ (((states("sensor.black_tank_level") | float(default=z)) - z) / h * 100.0) | round() }}
