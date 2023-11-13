@@ -296,9 +296,22 @@
         none -%}\n  {{ state_attr('device_tracker.gps_location', 'latitude') }}\n{%-
         endif %}"
       longitude: "{% if state_attr('device_tracker.gps_location', 'longitude') is
-        not none -%}\n  {{ state_attr('device_tracker.gps_location', 'longitude') }}\n{%-
-        endif %}"
+        not none -%}\n  {{ state_attr('device_tracker.gps_location', 'longitude')
+        }}\n{%- endif %}"
       elevation: "{% if state_attr('device_tracker.gps_location', 'altitude') is not
         none -%}\n  {{ state_attr('device_tracker.gps_location', 'altitude') | int(default=0)
         }}\n{%- endif %}"
+  mode: single
+- id: '1699887231044'
+  alias: Notify HA Started
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: notify.notify
+    data:
+      title: HA Has Started
+      message: HA has started
   mode: single
