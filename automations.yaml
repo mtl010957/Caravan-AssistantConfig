@@ -315,3 +315,18 @@
       title: HA Has Started
       message: HA has started
   mode: single
+- id: '1700673885536'
+  alias: Restart GPS Addon if Not Running
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /10
+  condition:
+  - condition: template
+    value_template: '{{ state_attr(''device_tracker.gps_location'', ''latitude'')
+      is none }}'
+  action:
+  - service: hassio.addon_restart
+    data:
+      addon: 2d5c2698_gpsd2mqtt
+  mode: single
