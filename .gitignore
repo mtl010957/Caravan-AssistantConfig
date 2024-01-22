@@ -12,6 +12,7 @@
 !fan
 !input_number
 !light
+!modbus
 !mqtt
 !number
 !scripts
