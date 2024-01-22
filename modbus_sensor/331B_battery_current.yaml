@@ -1,0 +1,12 @@
+      - name: Battery Current #0x00331B & 1C
+        unit_of_measurement: A
+        state_class: measurement
+        device_class: current
+        slave: 1
+        address: 13083
+        input_type: input
+        scale: 0.01
+        precision: 2
+        #count: 2
+        swap: word
+        data_type: int32

@@ -1,0 +1,12 @@
+      - name: Array Input Power # 3102 and 3103
+        unit_of_measurement: W
+        state_class: measurement
+        device_class: power
+        slave: 1
+        address: 12546
+        input_type: input
+        scale: .01
+        #count: 2
+        precision: 2
+        swap: word
+        data_type: uint32

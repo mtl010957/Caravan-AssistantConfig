@@ -1,0 +1,19 @@
+      - name: Battery Status #0x003200
+        slave: 1
+        address: 12800
+        input_type: input
+        scale: 1
+        precision: 0
+        data_type: uint16
+        #######################################################################
+        #D15: 1-Wrong identification for rated voltage
+        #D8: Battery inner resistance, abnormal 1, normal 0
+        #D7-D4: 00H Normal, 01H Over, Temp.(Higher than the warning settings) 02H Low Temp.(Lower than the warning settings),
+        #D3-D0: 00H Normal ,01H Over Voltage. , 02H Under Voltage, 03H Over discharge, 04H Fault
+        #Status analysis
+        #Array status:address 3201 bits D15-D10
+        #Charging status:address 3201 bits D3-D2
+        #Battery status: address 3200 bits D7-D0
+        #Load status: address 3201 bits D9-D7,
+        #Device status: address 3200 bit D15 address 3202 bits D13-D8,D6-D4 address 3201 bits D6 address 2000
+        ############################################################################################

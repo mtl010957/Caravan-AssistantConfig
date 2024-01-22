@@ -1,0 +1,10 @@
+      - name: Battery Voltage #0x00331A
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 13082
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16

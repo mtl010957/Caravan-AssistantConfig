@@ -1,0 +1,10 @@
+      - name: Maximum Battery Voltage Today #0x003302
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 13058
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16

@@ -1,0 +1,10 @@
+      - name: Device Temperature #0x003111
+        unit_of_measurement: °C
+        state_class: measurement
+        device_class: temperature
+        slave: 1
+        address: 12561
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: int16

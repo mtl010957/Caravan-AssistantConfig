@@ -1,0 +1,9 @@
+      - name: Battery State of Charge #0x00311A
+        unit_of_measurement: "%"
+        state_class: measurement
+        slave: 1
+        address: 12570
+        input_type: input
+        scale: 1
+        precision: 0
+        data_type: uint16
