@@ -8,11 +8,11 @@
     bytesize: 8
     parity: N
     binary_sensors:
-      - name: Day/Night
+      - name: Solar Day/Night
         address: 8204
         input_type: discrete_input
         slave: 1
-      - name: Over Temp
+      - name: Solar Over Temp
         address: 8192
         input_type: discrete_input
         slave: 1 
@@ -28,7 +28,16 @@
 #        scale: 0.01
 #        precision: 1
 #        data_type: uint16
-      - name: Array Input Voltage #0x003100
+      - name: Solar Charging Mode #0x003008
+        state_class: measurement
+        slave: 1
+        address: 12296
+        input_type: input
+        data_type: uint16
+        #######################################################################
+        #D0-D1: 0 Off, 1 PWM, 2 MPPT, 3 Error.
+        #######################################################################
+      - name: Solar Array Input Voltage #0x003100
         unit_of_measurement: V
         state_class: measurement
         device_class: voltage
@@ -38,7 +47,7 @@
         scale: 0.01
         precision: 2
         data_type: uint16
-      - name: Array Input Current # 0x003101
+      - name: Solar Array Input Current # 0x003101
         unit_of_measurement: A
         state_class: measurement
         device_class: current
@@ -48,7 +57,7 @@
         scale: 0.01
         precision: 2
         data_type: uint16
-      - name: Array Power # 3102 and 3103
+      - name: Solar Array Power # 3102 and 3103
         unit_of_measurement: W
         state_class: measurement
         device_class: power
@@ -60,7 +69,7 @@
         precision: 2
         swap: word
         data_type: uint32
-      - name: Battery Temperature #0x003110
+      - name: Solar Battery Temperature #0x003110
         unit_of_measurement: °C
         state_class: measurement
         device_class: temperature
@@ -70,7 +79,7 @@
         scale: 0.01
         precision: 2
         data_type: int16
-      - name: Device Temperature #0x003111
+      - name: Solar Device Temperature #0x003111
         unit_of_measurement: °C
         state_class: measurement
         device_class: temperature
@@ -80,7 +89,7 @@
         scale: 0.01
         precision: 2
         data_type: int16
-      - name: Battery State of Charge #0x00311A
+      - name: Solar Battery State of Charge #0x00311A
         unit_of_measurement: "%"
         state_class: measurement
         slave: 1
@@ -89,7 +98,7 @@
         scale: 1
         precision: 0
         data_type: uint16
-      - name: Battery Status #0x003200
+      - name: Solar Battery Status #0x003200
         slave: 1
         address: 12800
         input_type: input
@@ -108,7 +117,7 @@
         #Load status: address 3201 bits D9-D7,
         #Device status: address 3200 bit D15 address 3202 bits D13-D8,D6-D4 address 3201 bits D6 address 2000
         ############################################################################################
-      - name: Charging Equipment Status #0x003201
+      - name: Solar Charger Status #0x003201
         slave: 1
         address: 12801
         input_type: input
@@ -136,7 +145,7 @@
         #Load status: address 3201 bits D9-D7,
         #Device status: address 3200 bit D15 address 3202 bits D13-D8,D6-D4 address 3201 bits D6 address 2000
         ############################################################################################
-      - name: Maximum Battery Voltage Today #0x003302
+      - name: Solar Maximum Battery Voltage Today #0x003302
         unit_of_measurement: V
         state_class: measurement
         device_class: voltage
@@ -146,7 +155,7 @@
         scale: 0.01
         precision: 2
         data_type: uint16
-      - name: Minimum Battery Voltage Today #0x003303
+      - name: Solar Minimum Battery Voltage Today #0x003303
         unit_of_measurement: V
         state_class: measurement
         device_class: voltage
@@ -156,7 +165,7 @@
         scale: 0.01
         precision: 2
         data_type: uint16
-      - name: Generated Energy Today #0x00330C & 0D
+      - name: Solar Generated Energy Today #0x00330C & 0D
         unit_of_measurement: kWh
         state_class: total_increasing
         device_class: energy
@@ -168,7 +177,7 @@
         #count: 2
         swap: word
         data_type: int32
-#      - name: Generated Energy This Month #0x00330E & 0F
+#      - name: Solar Generated Energy This Month #0x00330E & 0F
 #        unit_of_measurement: kWh
 #        slave: 1
 #        address: 13070
@@ -178,7 +187,7 @@
         #count: 2
 #        swap: word
 #        data_type: int32
-#      - name: Generated Energy This Year #0x003310 & 11
+#      - name: Solar Generated Energy This Year #0x003310 & 11
 #        unit_of_measurement: kWh
 #       slave: 1
 #        address: 13072
@@ -188,7 +197,7 @@
         #count: 2
 #        swap: word
 #        data_type: int32
-#      - name: Total Generated Energy #0x003312 & 13
+#      - name: Total Solar Generated Energy #0x003312 & 13
 #        unit_of_measurement: kWh
 #        state_class: measurement
 #        device_class: energy
@@ -200,7 +209,7 @@
         #count: 2
 #        swap: word
 #        data_type: int32
-      - name: Battery Voltage #0x00331A
+      - name: Solar Battery Voltage #0x00331A
         unit_of_measurement: V
         state_class: measurement
         device_class: voltage
@@ -210,7 +219,7 @@
         scale: 0.01
         precision: 2
         data_type: uint16
-      - name: Battery Current #0x00331B & 1C
+      - name: Solar Battery Current #0x00331B & 1C
         unit_of_measurement: A
         state_class: measurement
         device_class: current
