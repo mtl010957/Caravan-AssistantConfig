@@ -57,12 +57,44 @@
         scale: 0.01
         precision: 2
         data_type: uint16
-      - name: Solar Array Power # 3102 and 3103
+      - name: Solar Array Input Power # 3102 and 3103
         unit_of_measurement: W
         state_class: measurement
         device_class: power
         slave: 1
         address: 12546
+        input_type: input
+        scale: .01
+        #count: 2
+        precision: 2
+        swap: word
+        data_type: uint32
+      - name: Solar Charging Voltage #0x003104
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 12548
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
+      - name: Solar Charging Current # 0x003105
+        unit_of_measurement: A
+        state_class: measurement
+        device_class: current
+        slave: 1
+        address: 12549
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
+      - name: Solar Charging Power # 3106 and 3107
+        unit_of_measurement: W
+        state_class: measurement
+        device_class: power
+        slave: 1
+        address: 12550
         input_type: input
         scale: .01
         #count: 2
@@ -85,6 +117,16 @@
         device_class: temperature
         slave: 1
         address: 12561
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: int16
+      - name: Solar Power Components Temperature #0x003112
+        unit_of_measurement: °C
+        state_class: measurement
+        device_class: temperature
+        slave: 1
+        address: 12562
         input_type: input
         scale: 0.01
         precision: 2
@@ -145,6 +187,26 @@
         #Load status: address 3201 bits D9-D7,
         #Device status: address 3200 bit D15 address 3202 bits D13-D8,D6-D4 address 3201 bits D6 address 2000
         ############################################################################################
+      - name: Solar Maximum PV Voltage Today #0x003300
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 13056
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
+      - name: Solar Minimum PV Voltage Today #0x003300
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 13057
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
       - name: Solar Maximum Battery Voltage Today #0x003302
         unit_of_measurement: V
         state_class: measurement
