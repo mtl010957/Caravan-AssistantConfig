@@ -7,17 +7,17 @@
     stopbits: 1
     bytesize: 8
     parity: N
-#    binary_sensors:
-#      - name: Day/Night
-#        address: 8204
-#        input_type: discrete_input
-#        slave: 1
-#      - name: Over Temp
-#        address: 8192
-#        input_type: discrete_input
-#        slave: 1 
+    binary_sensors:
+      - name: Day/Night
+        address: 8204
+        input_type: discrete_input
+        slave: 1
+      - name: Over Temp
+        address: 8192
+        input_type: discrete_input
+        slave: 1 
 
-    sensors: !include_dir_merge_list modbus_sensor
+    sensors:
 #EPEVER Controller 1
 #Rated Data
 #      - name: Charging Equipment Rated Input Voltage #0x003000
@@ -28,74 +28,74 @@
 #        scale: 0.01
 #        precision: 1
 #        data_type: uint16
-#      - name: Array Input Voltage #0x003100
-#        unit_of_measurement: V
-#        state_class: measurement
-#        device_class: voltage
-#        slave: 1
-#        address: 12544
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
-#        data_type: uint16
-#      - name: Array Input Current # 0x003101
-#        unit_of_measurement: A
-#        state_class: measurement
-#        device_class: current
-#        slave: 1
-#        address: 12545
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
-#        data_type: uint16
-#      - name: Array Power # 3102 and 3103
-#        unit_of_measurement: W
-#        state_class: measurement
-#        device_class: power
-#        slave: 1
-#        address: 12546
-#        input_type: input
-#        scale: .01
+      - name: Array Input Voltage #0x003100
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 12544
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
+      - name: Array Input Current # 0x003101
+        unit_of_measurement: A
+        state_class: measurement
+        device_class: current
+        slave: 1
+        address: 12545
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
+      - name: Array Power # 3102 and 3103
+        unit_of_measurement: W
+        state_class: measurement
+        device_class: power
+        slave: 1
+        address: 12546
+        input_type: input
+        scale: .01
         #count: 2
-#        precision: 2
-#        swap: word
-#        data_type: uint32
-#      - name: Battery Temperature #0x003110
-#        unit_of_measurement: °C
-#        state_class: measurement
-#        device_class: temperature
-#        slave: 1
-#        address: 12560
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
-#        data_type: int16
-#      - name: Device Temperature #0x003111
-#        unit_of_measurement: °C
-#        state_class: measurement
-#        device_class: temperature
-#        slave: 1
-#        address: 12561
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
-#        data_type: int16
-#      - name: Battery State of Charge #0x00311A
-#        unit_of_measurement: "%"
-#        state_class: measurement
-#        slave: 1
-#        address: 12570
-#        input_type: input
-#        scale: 1
-#        precision: 0
-#        data_type: uint16
-#      - name: Battery Status #0x003200
-#        slave: 1
-#        address: 12800
-#        input_type: input
-#        scale: 1
-#        precision: 0
-#        data_type: uint16
+        precision: 2
+        swap: word
+        data_type: uint32
+      - name: Battery Temperature #0x003110
+        unit_of_measurement: °C
+        state_class: measurement
+        device_class: temperature
+        slave: 1
+        address: 12560
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: int16
+      - name: Device Temperature #0x003111
+        unit_of_measurement: °C
+        state_class: measurement
+        device_class: temperature
+        slave: 1
+        address: 12561
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: int16
+      - name: Battery State of Charge #0x00311A
+        unit_of_measurement: "%"
+        state_class: measurement
+        slave: 1
+        address: 12570
+        input_type: input
+        scale: 1
+        precision: 0
+        data_type: uint16
+      - name: Battery Status #0x003200
+        slave: 1
+        address: 12800
+        input_type: input
+        scale: 1
+        precision: 0
+        data_type: uint16
         #######################################################################
         #D15: 1-Wrong identification for rated voltage
         #D8: Battery inner resistance, abnormal 1, normal 0
@@ -108,13 +108,13 @@
         #Load status: address 3201 bits D9-D7,
         #Device status: address 3200 bit D15 address 3202 bits D13-D8,D6-D4 address 3201 bits D6 address 2000
         ############################################################################################
-#      - name: Charging Equipment Status #0x003201
-#        slave: 1
-#        address: 12801
-#        input_type: input
-#        scale: 1
-#        precision: 0
-#        data_type: uint16
+      - name: Charging Equipment Status #0x003201
+        slave: 1
+        address: 12801
+        input_type: input
+        scale: 1
+        precision: 0
+        data_type: uint16
         #######################################################################
         #D15-D14: Input voltage status. 00H normal, 01H No input power connected, 02H Higher input voltage , 03H Input voltage error.
         #D13: Charging MOSFET is short circuit.
@@ -136,38 +136,38 @@
         #Load status: address 3201 bits D9-D7,
         #Device status: address 3200 bit D15 address 3202 bits D13-D8,D6-D4 address 3201 bits D6 address 2000
         ############################################################################################
-#      - name: Maximum Battery Voltage Today #0x003302
-#        unit_of_measurement: V
-#        state_class: measurement
-#        device_class: voltage
-#        slave: 1
-#        address: 13058
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
-#        data_type: uint16
-#      - name: Minimum Battery Voltage Today #0x003303
-#        unit_of_measurement: V
-#        state_class: measurement
-#        device_class: voltage
-#        slave: 1
-#        address: 13059
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
-#        data_type: uint16
-#      - name: Generated Energy Today #0x00330C & 0D
-#        unit_of_measurement: kWh
-#        state_class: total_increasing
-#        device_class: energy
-#        slave: 1
-#        address: 13068
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
+      - name: Maximum Battery Voltage Today #0x003302
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 13058
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
+      - name: Minimum Battery Voltage Today #0x003303
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 13059
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
+      - name: Generated Energy Today #0x00330C & 0D
+        unit_of_measurement: kWh
+        state_class: total_increasing
+        device_class: energy
+        slave: 1
+        address: 13068
+        input_type: input
+        scale: 0.01
+        precision: 2
         #count: 2
-#        swap: word
-#        data_type: int32
+        swap: word
+        data_type: int32
 #      - name: Generated Energy This Month #0x00330E & 0F
 #        unit_of_measurement: kWh
 #        slave: 1
@@ -200,26 +200,26 @@
         #count: 2
 #        swap: word
 #        data_type: int32
-#      - name: Battery Voltage #0x00331A
-#        unit_of_measurement: V
-#        state_class: measurement
-#        device_class: voltage
-#        slave: 1
-#        address: 13082
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
-#        data_type: uint16
-#      - name: Battery Current #0x00331B & 1C
-#        unit_of_measurement: A
-#        state_class: measurement
-#        device_class: current
-#        slave: 1
-#        address: 13083
-#        input_type: input
-#        scale: 0.01
-#        precision: 2
+      - name: Battery Voltage #0x00331A
+        unit_of_measurement: V
+        state_class: measurement
+        device_class: voltage
+        slave: 1
+        address: 13082
+        input_type: input
+        scale: 0.01
+        precision: 2
+        data_type: uint16
+      - name: Battery Current #0x00331B & 1C
+        unit_of_measurement: A
+        state_class: measurement
+        device_class: current
+        slave: 1
+        address: 13083
+        input_type: input
+        scale: 0.01
+        precision: 2
         #count: 2
-#        swap: word
-#        data_type: int32
+        swap: word
+        data_type: int32
 ###############################################################################
