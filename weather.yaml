@@ -48,8 +48,12 @@
           sunny
         {%- elif state == 'Clear' and not daytime -%}
           clear-night
+        {%- elif 'Rain' in state and 'Snow' in state -%}
+          snowy-rainy
         {%- elif 'Rain' in state -%}
           rainy
+        {%- elif 'Snow' in state -%}
+          snowy
         {%- else -%}
           unknown
         {%- endif -%}
