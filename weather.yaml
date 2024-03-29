@@ -1,0 +1,42 @@
+  - platform: template
+#          - "temperature"
+#          - "relativeHumidity"
+#          - "dewpoint"
+#          - "seaLevelPressure"
+#          - "windDirection"
+#          - "windSpeed"
+#          - "visibility"
+#          - "precipitationLastHour"
+#          - "windChill"
+#          - "heatIndex"
+    name: "Local Weather"
+    unique_id: "local_weather"
+    condition_template: >
+        {% if is_state('sensor.nws_api_current','Partly Cloudy') -%}
+            partlycloudy
+        {%- elif is_state('sensor.nws_api_current','Clear') and is_state('sun.sun','above_horizon') -%}
+            sunny
+        {%- elif is_state('sensor.nws_api_current','Mostly Clear') -%}
+            partlycloudy
+        {%- elif is_state('sensor.nws_api_current','Clear') and is_state('sun.sun','below_horizon') -%}
+            clear-night
+        {%- elif is_state('sensor.nws_api_current','Mostly Clear') -%}
+            partlycloudy
+        {%- else -%}
+            unknown
+        {%- endif %}
+    temperature_template: "{{ state_attr('sensor.nws_api_current','temperature').value | float }}"
+    temperature_unit: "°C"
+    humidity_template: "{{ state_attr('sensor.nws_api_current','relativeHumidity').value | float }}"
+    dew_point_template: "{{ state_attr('sensor.nws_api_current','dewpoint').value | float }}"
+    apparent_temperature_template: "{{ state_attr('sensor.nws_api_current','windChill').value | float }}"
+    pressure_template: "{{ state_attr('sensor.nws_api_current','seaLevelPressure').value | float }}"
+    pressure_unit: "Pa"
+    wind_speed_template: "{{ state_attr('sensor.nws_api_current','windSpeed').value | float }}"
+    wind_gust_speed_template: "{{ state_attr('sensor.nws_api_current','windGust').value | float }}"
+    wind_speed_unit: "km/h"
+    wind_bearing_template: "{{ state_attr('sensor.nws_api_current','windDirection').value | float }}"
+    visibility_template: "{{ state_attr('sensor.nws_api_current','visibility').value | float }}"
+    visibility_unit: "m"
+#    forecast_twice_daily_template: "{{ state_attr('weather.my_region', 'forecast') }}"
+    attribution_template: "Data from National Weather Service/NOAA {{ state_attr('sensor.nws_api_station','stationIdentifier') }}"

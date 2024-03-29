@@ -1,0 +1,242 @@
+  - resource_template: "{{ state_attr('sensor.nws_api_cwa','forecast') }}"
+    scan_interval: 300
+# Need
+#  - detailed_description: >-
+#      Mostly clear. Low around 28, with temperatures rising to around 30
+#      overnight. West southwest wind 6 to 10 mph.
+#    datetime: "2024-03-27T20:00:00-04:00"
+#    precipitation_probability: 0
+#    is_daytime: false
+#    condition: partlycloudy
+#    wind_bearing: 247.5
+#    temperature: 28
+#    dew_point: 23
+#    wind_speed: 8
+#    humidity: 75
+#
+# Source
+#        "periods": [
+#            {
+#                "number": 1,
+#                "name": "This Afternoon",
+#                "startTime": "2024-03-27T16:00:00-04:00",
+#                "endTime": "2024-03-27T18:00:00-04:00",
+#                "isDaytime": true,
+#                "temperature": 42,
+#                "temperatureUnit": "F",
+#                "temperatureTrend": null,
+#                "probabilityOfPrecipitation": {
+#                    "unitCode": "wmoUnit:percent",
+#                    "value": null
+#                },
+#                "dewpoint": {
+#                    "unitCode": "wmoUnit:degC",
+#                    "value": -3.8888888888888888
+#                },
+#                "relativeHumidity": {
+#                    "unitCode": "wmoUnit:percent",
+#                    "value": 54
+#                },
+#                "windSpeed": "14 mph",
+#                "windDirection": "W",
+#                "icon": "https://api.weather.gov/icons/land/day/bkn?size=medium",
+#                "shortForecast": "Partly Sunny",
+#                "detailedForecast": "Partly sunny, with a high near 42. West wind around 14 mph, with gusts as high as 21 mph."
+#            },
+    sensor:
+      - name: "NWS API Forecast Day Night 0"
+        value_template: "{{ value_json.properties.periods.0.name }}"
+        json_attributes_path: "$.properties.periods.0"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 1"
+        value_template: "{{ value_json.properties.periods.1.name }}"
+        json_attributes_path: "$.properties.periods.1"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 2"
+        value_template: "{{ value_json.properties.periods.2.name }}"
+        json_attributes_path: "$.properties.periods.2"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 3"
+        value_template: "{{ value_json.properties.periods.3.name }}"
+        json_attributes_path: "$.properties.periods.3"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 4"
+        value_template: "{{ value_json.properties.periods.4.name }}"
+        json_attributes_path: "$.properties.periods.4"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 5"
+        value_template: "{{ value_json.properties.periods.5.name }}"
+        json_attributes_path: "$.properties.periods.5"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 6"
+        value_template: "{{ value_json.properties.periods.6.name }}"
+        json_attributes_path: "$.properties.periods.6"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 7"
+        value_template: "{{ value_json.properties.periods.7.name }}"
+        json_attributes_path: "$.properties.periods.7"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 8"
+        value_template: "{{ value_json.properties.periods.8.name }}"
+        json_attributes_path: "$.properties.periods.8"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 9"
+        value_template: "{{ value_json.properties.periods.9.name }}"
+        json_attributes_path: "$.properties.periods.9"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 10"
+        value_template: "{{ value_json.properties.periods.10.name }}"
+        json_attributes_path: "$.properties.periods.10"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 11"
+        value_template: "{{ value_json.properties.periods.11.name }}"
+        json_attributes_path: "$.properties.periods.11"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 12"
+        value_template: "{{ value_json.properties.periods.12.name }}"
+        json_attributes_path: "$.properties.periods.12"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"
+      - name: "NWS API Forecast Day Night 13"
+        value_template: "{{ value_json.properties.periods.13.name }}"
+        json_attributes_path: "$.properties.periods.13"
+        json_attributes:
+          - "detailedForecast"
+          - "startTime"
+          - "probabilityOfPrecipitation"
+          - "isDaytime"
+          - "shortForecast"
+          - "windDirection"
+          - "temperature"
+          - "dewpoint"
+          - "windSpeed"
+          - "relativeHumidity"

@@ -1,0 +1,9 @@
+  - resource_template: "https://api.weather.gov/points/{{ state_attr('zone.home','latitude') }},{{ state_attr('zone.home','longitude') }}"
+    scan_interval: 60
+    sensor:
+      - name: "NWS API CWA"
+        value_template: "{{ value_json.properties.cwa }}"
+        json_attributes_path: "$.properties"
+        json_attributes:
+          - "forecast"
+          - "observationStations"        

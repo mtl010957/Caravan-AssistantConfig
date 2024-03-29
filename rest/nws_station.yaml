@@ -1,0 +1,24 @@
+  - resource_template: "{{ state_attr('sensor.nws_api_cwa','observationStations') }}"
+    scan_interval: 60
+#            "properties": {
+#                "@id": "https://api.weather.gov/stations/KPTK",
+#                "@type": "wx:ObservationStation",
+#                "elevation": {
+#                    "unitCode": "wmoUnit:m",
+#                    "value": 299.00880000000001
+#                },
+#                "stationIdentifier": "KPTK",
+#                "name": "Pontiac, Oakland County International Airport",
+#                "timeZone": "America/Detroit",
+#                "forecast": "https://api.weather.gov/zones/forecast/MIZ069",
+#                "county": "https://api.weather.gov/zones/county/MIC125",
+#                "fireWeatherZone": "https://api.weather.gov/zones/fire/MIZ069"
+#            }
+    sensor:
+      - name: "NWS API Station"
+        value_template: "{{ value_json.features.0.id }}"
+        json_attributes_path: "$.features.0.properties"
+        json_attributes:
+          - "stationIdentifier"
+          - "name"
+          - "timeZone"

@@ -1,0 +1,134 @@
+  - resource_template: "{{ states('sensor.nws_api_station') }}/observations/latest"
+    scan_interval: 300
+    sensor:
+      - name: "NWS API Current"
+        value_template: "{{ value_json.properties.textDescription }}"
+        json_attributes_path: "$.properties"
+# Need:    
+# temperature: 33
+# temperature_unit: °F
+# humidity: 63
+# pressure: 30.11
+# pressure_unit: inHg
+# wind_bearing: 280
+# wind_speed: 11.41
+# wind_speed_unit: mph
+# visibility: 10
+# visibility_unit: mi
+# precipitation_unit: in
+#
+# Source:
+#    "properties": {
+#        "@id": "https://api.weather.gov/stations/KPTK/observations/2024-03-27T20:53:00+00:00",
+#        "@type": "wx:ObservationStation",
+#        "elevation": {
+#            "unitCode": "wmoUnit:m",
+#            "value": 299
+#        },
+#        "station": "https://api.weather.gov/stations/KPTK",
+#        "timestamp": "2024-03-27T20:53:00+00:00",
+#        "rawMessage": "KPTK 272053Z 25011G20KT 10SM OVC026 02/M04 A3002 RMK AO2 SLP173 T00221044 53009",
+#        "textDescription": "Cloudy",
+#        "icon": "https://api.weather.gov/icons/land/day/ovc?size=medium",
+#        "presentWeather": [],
+#        "temperature": {
+#            "unitCode": "wmoUnit:degC",
+#            "value": 2.2000000000000002,
+#            "qualityControl": "V"
+#        },
+#        "dewpoint": {
+#            "unitCode": "wmoUnit:degC",
+#            "value": -4.4000000000000004,
+#            "qualityControl": "V"
+#        },
+#        "windDirection": {
+#            "unitCode": "wmoUnit:degree_(angle)",
+#            "value": 250,
+#            "qualityControl": "V"
+#        },
+#        "windSpeed": {
+#            "unitCode": "wmoUnit:km_h-1",
+#            "value": 20.52,
+#            "qualityControl": "V"
+#        },
+#        "windGust": {
+#            "unitCode": "wmoUnit:km_h-1",
+#            "value": null,
+#            "qualityControl": "Z"
+#        },
+#        "barometricPressure": {
+#            "unitCode": "wmoUnit:Pa",
+#            "value": 101660,
+#            "qualityControl": "V"
+#        },
+#        "seaLevelPressure": {
+#            "unitCode": "wmoUnit:Pa",
+#            "value": 101730,
+#            "qualityControl": "V"
+#        },
+#        "visibility": {
+#            "unitCode": "wmoUnit:m",
+#            "value": 16090,
+#            "qualityControl": "C"
+#        },
+#        "maxTemperatureLast24Hours": {
+#            "unitCode": "wmoUnit:degC",
+#            "value": null
+#        },
+#        "minTemperatureLast24Hours": {
+#            "unitCode": "wmoUnit:degC",
+#            "value": null
+#        },
+#        "precipitationLastHour": {
+#            "unitCode": "wmoUnit:mm",
+#            "value": null,
+#            "qualityControl": "Z"
+#        },
+#        "precipitationLast3Hours": {
+#            "unitCode": "wmoUnit:mm",
+#            "value": null,
+#            "qualityControl": "Z"
+#        },
+#        "precipitationLast6Hours": {
+#            "unitCode": "wmoUnit:mm",
+#            "value": null,
+#            "qualityControl": "Z"
+#        },
+#        "relativeHumidity": {
+#            "unitCode": "wmoUnit:percent",
+#            "value": 61.688238382188999,
+#            "qualityControl": "V"
+#        },
+#        "windChill": {
+#            "unitCode": "wmoUnit:degC",
+#            "value": -2.517996237817222,
+#            "qualityControl": "V"
+#        },
+#        "heatIndex": {
+#            "unitCode": "wmoUnit:degC",
+#            "value": null,
+#            "qualityControl": "V"
+#        },
+#        "cloudLayers": [
+#            {
+#                "base": {
+#                    "unitCode": "wmoUnit:m",
+#                    "value": 790
+#                },
+#                "amount": "OVC"
+#            }
+#        ]
+#
+        json_attributes:
+          - "temperature"
+          - "relativeHumidity"
+          - "dewpoint"
+          - "windDirection"
+          - "windSpeed"
+          - "windGust"
+          - "seaLevelPressure"
+          - "visibility"
+          - "precipitationLastHour"
+          - "windChill"
+          - "heatIndex"
+
