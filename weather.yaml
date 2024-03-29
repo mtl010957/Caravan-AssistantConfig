@@ -12,19 +12,17 @@
     name: "Local Weather"
     unique_id: "local_weather"
     condition_template: >
-        {% if is_state('sensor.nws_api_current','Partly Cloudy') -%}
+        {%- if is_state('sensor.nws_api_current','Partly Cloudy') or is_state('sensor.nws_api_current','Mostly Clear') -%}
             partlycloudy
+        {%- elif is_state('sensor.nws_api_current','Mostly Cloudy') or is_state('sensor.nws_api_current','Cloudy') -%}
+            cloudy
         {%- elif is_state('sensor.nws_api_current','Clear') and is_state('sun.sun','above_horizon') -%}
             sunny
-        {%- elif is_state('sensor.nws_api_current','Mostly Clear') -%}
-            partlycloudy
         {%- elif is_state('sensor.nws_api_current','Clear') and is_state('sun.sun','below_horizon') -%}
             clear-night
-        {%- elif is_state('sensor.nws_api_current','Mostly Clear') -%}
-            partlycloudy
         {%- else -%}
             unknown
-        {%- endif %}
+        {%- endif -%}
     temperature_template: "{{ state_attr('sensor.nws_api_current','temperature').value | float }}"
     temperature_unit: "°C"
     humidity_template: "{{ state_attr('sensor.nws_api_current','relativeHumidity').value | float }}"
@@ -38,5 +36,87 @@
     wind_bearing_template: "{{ state_attr('sensor.nws_api_current','windDirection').value | float }}"
     visibility_template: "{{ state_attr('sensor.nws_api_current','visibility').value | float }}"
     visibility_unit: "m"
-#    forecast_twice_daily_template: "{{ state_attr('weather.my_region', 'forecast') }}"
+    forecast_twice_daily_template: >
+        {%- macro cond(state, daytime) -%}
+        {%- if state == 'Partly Cloudy' or state == 'Mostly Clear' -%}
+          partlycloudy
+        {%- elif state == 'Mostly Cloudy' or state == 'Cloudy' -%}
+          cloudy
+        {%- elif state == 'Sunny' -%}
+          sunny
+        {%- elif state == 'Clear' and daytime -%}
+          sunny
+        {%- elif state == 'Clear' and not daytime -%}
+          clear-night
+        {%- elif 'Rain' in state -%}
+          rainy
+        {%- else -%}
+          unknown
+        {%- endif -%}
+        {% endmacro -%}
+        {% set ns = namespace(forecast=[]) %}
+        {% set tsd = { 'datetime': state_attr('sensor.nws_api_forecast_day_night_0','startTime'),
+                       'is_daytime': state_attr('sensor.nws_api_forecast_day_night_0','isDaytime'),
+                       'condition': cond(state_attr('sensor.nws_api_forecast_day_night_0','shortForecast'),state_attr('sensor.nws_api_forecast_day_night_0','isDaytime')),
+                       'temperature': (state_attr('sensor.nws_api_forecast_day_night_0','temperature')-32)*(5/9),
+                       'humidity': state_attr('sensor.nws_api_forecast_day_night_0','relativeHumidity').value,
+                       'precipitation_probability': state_attr('sensor.nws_api_forecast_day_night_0','probabilityOfPrecipitation').value,
+                       'dew_point': (state_attr('sensor.nws_api_forecast_day_night_0','dewpoint').value)*(9/5)+32
+                     } %}
+        {% set ns.forecast = ns.forecast + [tsd] %}
+        {% set tsd = { 'datetime': state_attr('sensor.nws_api_forecast_day_night_1','startTime'),
+                       'is_daytime': state_attr('sensor.nws_api_forecast_day_night_1','isDaytime'),
+                       'condition': cond(state_attr('sensor.nws_api_forecast_day_night_1','shortForecast'),state_attr('sensor.nws_api_forecast_day_night_1','isDaytime')),
+                       'temperature': (state_attr('sensor.nws_api_forecast_day_night_1','temperature')-32)*(5/9),
+                       'humidity': state_attr('sensor.nws_api_forecast_day_night_1','relativeHumidity').value,
+                       'precipitation_probability': state_attr('sensor.nws_api_forecast_day_night_1','probabilityOfPrecipitation').value,
+                       'dew_point': (state_attr('sensor.nws_api_forecast_day_night_1','dewpoint').value)*(9/5)+32
+                     } %}
+        {% set ns.forecast = ns.forecast + [tsd] %}
+        {% set tsd = { 'datetime': state_attr('sensor.nws_api_forecast_day_night_2','startTime'),
+                       'is_daytime': state_attr('sensor.nws_api_forecast_day_night_2','isDaytime'),
+                       'condition': cond(state_attr('sensor.nws_api_forecast_day_night_2','shortForecast'),state_attr('sensor.nws_api_forecast_day_night_2','isDaytime')),
+                       'temperature': (state_attr('sensor.nws_api_forecast_day_night_2','temperature')-32)*(5/9),
+                       'humidity': state_attr('sensor.nws_api_forecast_day_night_2','relativeHumidity').value,
+                       'precipitation_probability': state_attr('sensor.nws_api_forecast_day_night_2','probabilityOfPrecipitation').value,
+                       'dew_point': (state_attr('sensor.nws_api_forecast_day_night_2','dewpoint').value)*(9/5)+32
+                     } %}
+        {% set ns.forecast = ns.forecast + [tsd] %}
+        {% set tsd = { 'datetime': state_attr('sensor.nws_api_forecast_day_night_3','startTime'),
+                       'is_daytime': state_attr('sensor.nws_api_forecast_day_night_3','isDaytime'),
+                       'condition': cond(state_attr('sensor.nws_api_forecast_day_night_3','shortForecast'),state_attr('sensor.nws_api_forecast_day_night_3','isDaytime')),
+                       'temperature': (state_attr('sensor.nws_api_forecast_day_night_3','temperature')-32)*(5/9),
+                       'humidity': state_attr('sensor.nws_api_forecast_day_night_3','relativeHumidity').value,
+                       'precipitation_probability': state_attr('sensor.nws_api_forecast_day_night_3','probabilityOfPrecipitation').value,
+                       'dew_point': (state_attr('sensor.nws_api_forecast_day_night_3','dewpoint').value)*(9/5)+32
+                     } %}
+        {% set ns.forecast = ns.forecast + [tsd] %}
+        {% set tsd = { 'datetime': state_attr('sensor.nws_api_forecast_day_night_4','startTime'),
+                       'is_daytime': state_attr('sensor.nws_api_forecast_day_night_4','isDaytime'),
+                       'condition': cond(state_attr('sensor.nws_api_forecast_day_night_4','shortForecast'),state_attr('sensor.nws_api_forecast_day_night_4','isDaytime')),
+                       'temperature': (state_attr('sensor.nws_api_forecast_day_night_4','temperature')-32)*(5/9),
+                       'humidity': state_attr('sensor.nws_api_forecast_day_night_4','relativeHumidity').value,
+                       'precipitation_probability': state_attr('sensor.nws_api_forecast_day_night_4','probabilityOfPrecipitation').value,
+                       'dew_point': (state_attr('sensor.nws_api_forecast_day_night_4','dewpoint').value)*(9/5)+32
+                     } %}
+        {% set ns.forecast = ns.forecast + [tsd] %}
+        {% set tsd = { 'datetime': state_attr('sensor.nws_api_forecast_day_night_5','startTime'),
+                       'is_daytime': state_attr('sensor.nws_api_forecast_day_night_5','isDaytime'),
+                       'condition': cond(state_attr('sensor.nws_api_forecast_day_night_5','shortForecast'),state_attr('sensor.nws_api_forecast_day_night_5','isDaytime')),
+                       'temperature': (state_attr('sensor.nws_api_forecast_day_night_5','temperature')-32)*(5/9),
+                       'humidity': state_attr('sensor.nws_api_forecast_day_night_5','relativeHumidity').value,
+                       'precipitation_probability': state_attr('sensor.nws_api_forecast_day_night_5','probabilityOfPrecipitation').value,
+                       'dew_point': (state_attr('sensor.nws_api_forecast_day_night_5','dewpoint').value)*(9/5)+32
+                     } %}
+        {% set ns.forecast = ns.forecast + [tsd] %}
+        {% set tsd = { 'datetime': state_attr('sensor.nws_api_forecast_day_night_6','startTime'),
+                       'is_daytime': state_attr('sensor.nws_api_forecast_day_night_6','isDaytime'),
+                       'condition': cond(state_attr('sensor.nws_api_forecast_day_night_6','shortForecast'),state_attr('sensor.nws_api_forecast_day_night_6','isDaytime')),
+                       'temperature': (state_attr('sensor.nws_api_forecast_day_night_6','temperature')-32)*(5/9),
+                       'humidity': state_attr('sensor.nws_api_forecast_day_night_6','relativeHumidity').value,
+                       'precipitation_probability': state_attr('sensor.nws_api_forecast_day_night_6','probabilityOfPrecipitation').value,
+                       'dew_point': (state_attr('sensor.nws_api_forecast_day_night_6','dewpoint').value)*(9/5)+32
+                     } %}
+        {% set ns.forecast = ns.forecast + [tsd] %}
+        {{ ns.forecast }}
     attribution_template: "Data from National Weather Service/NOAA {{ state_attr('sensor.nws_api_station','stationIdentifier') }}"
