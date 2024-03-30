@@ -12,10 +12,12 @@
     name: "Local Weather"
     unique_id: "local_weather"
     condition_template: >
-        {%- if is_state('sensor.nws_api_current','Partly Cloudy') or is_state('sensor.nws_api_current','Mostly Clear') -%}
+        {%- if is_state('sensor.nws_api_current','Partly Cloudy') or is_state('sensor.nws_api_current','Mostly Clear') or is_state('sensor.nws_api_current','Partly Sunny') -%}
             partlycloudy
         {%- elif is_state('sensor.nws_api_current','Mostly Cloudy') or is_state('sensor.nws_api_current','Cloudy') -%}
             cloudy
+        {%- elif is_state('sensor.nws_api_current','Fog/Mist') or is_state('sensor.nws_api_current','Fog') -%}
+            fog
         {%- elif is_state('sensor.nws_api_current','Clear') and is_state('sun.sun','above_horizon') -%}
             sunny
         {%- elif is_state('sensor.nws_api_current','Clear') and is_state('sun.sun','below_horizon') -%}
@@ -53,7 +55,7 @@
 #    ‘exceptional’
     forecast_twice_daily_template: >
         {%- macro cond(state, daytime) -%}
-        {%- if state == 'Partly Cloudy' or state == 'Mostly Sunny' -%}
+        {%- if state == 'Partly Cloudy' or state == 'Mostly Sunny' or state == 'Partly Sunny'-%}
           partlycloudy
         {%- elif state == 'Mostly Cloudy' or state == 'Cloudy' -%}
           cloudy
@@ -71,6 +73,8 @@
           rainy
         {%- elif 'Snow' in state -%}
           snowy
+        {%- elif 'Fog/Mist' in state  or state == 'Fog' -%}
+          fog
         {%- else -%}
           unknown
         {%- endif -%}
