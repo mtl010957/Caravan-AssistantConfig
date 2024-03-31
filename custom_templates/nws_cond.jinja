@@ -1,0 +1,65 @@
+{%- macro cond(state, daytime) -%}
+{%- if 
+    'Tornado' in state or
+    'Hurricane conditions' in state or
+    'Tropical storm conditions' in state or
+    'Dust' in state or
+    'Smoke' in state or
+    'Haze' in state or
+    'Hot' in state or
+    'Cold' in state -%}
+    exceptional
+{%- elif 
+    'Rain And Snow' in state or
+    'Rain/Snow' in state or
+    'Rain/Sleet' in state or
+    'Freezing Rain/Snow' in state or
+    'Freezing Rain' in state or
+    'Rain/Freezing Rain' in state -%}
+    snowy-rainy
+{%- elif 
+    'Snow' in state or
+    'Sleet' in state or
+    'Snow/Sleet' in state or
+    'Blizzard' in state -%}
+    snowy
+{%- elif
+    'Thunderstorm' in state -%}
+    lightning-rainy
+{%- elif
+    'Rain' in state -%}
+    rainy
+{%- elif
+    'Mostly cloudy and windy' in state or
+    'overcast and windy' in state -%}
+    windy-variant
+{%- elif
+    'Fair/clear and windy' in state or
+    'A few clouds and windy' in state or
+    'Partly cloudy and windy' in state -%}
+    windy
+{%- elif
+    'Fog/Mist' in state or
+    'Fog' in state -%}
+    fog
+{%- elif
+    'Clear' in state and daytime or
+    'Sunny' in state -%}
+    sunny
+{%- elif
+    'Clear' in state and not daytime -%}
+    clear-night
+{%- elif
+    'Mostly Cloudy' in state or
+    'Overcast' in state or
+    'Cloudy' in state -%}
+    cloudy
+{%- elif
+    'Partly Cloudy' in state or
+    'Mostly Clear' in state or
+    'Partly Sunny' in state -%}
+    partlycloudy
+{%- else -%}
+    unknown
+{%- endif -%}
+{% endmacro -%}
