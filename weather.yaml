@@ -73,4 +73,57 @@
             {% set ns.forecast = ns.forecast + [tsd] -%}
         {% endfor -%}
         {{ ns.forecast }}
+    forecast_hourly_template: >
+        {% from 'nws_cond.jinja' import cond %}
+        {%- set ns = namespace(forecast=[]) -%}
+        {%- set sensors = [
+          'sensor.nws_api_forecast_hour_0',
+          'sensor.nws_api_forecast_hour_1',
+          'sensor.nws_api_forecast_hour_2',
+          'sensor.nws_api_forecast_hour_3',
+          'sensor.nws_api_forecast_hour_4',
+          'sensor.nws_api_forecast_hour_5',
+          'sensor.nws_api_forecast_hour_6',
+          'sensor.nws_api_forecast_hour_7',
+          'sensor.nws_api_forecast_hour_8',
+          'sensor.nws_api_forecast_hour_9',
+          'sensor.nws_api_forecast_hour_10',
+          'sensor.nws_api_forecast_hour_11',
+          'sensor.nws_api_forecast_hour_12',
+          'sensor.nws_api_forecast_hour_13',
+          'sensor.nws_api_forecast_hour_14',
+          'sensor.nws_api_forecast_hour_15',
+          'sensor.nws_api_forecast_hour_16',
+          'sensor.nws_api_forecast_hour_17',
+          'sensor.nws_api_forecast_hour_18',
+          'sensor.nws_api_forecast_hour_19',
+          'sensor.nws_api_forecast_hour_20',
+          'sensor.nws_api_forecast_hour_21',
+          'sensor.nws_api_forecast_hour_22',
+          'sensor.nws_api_forecast_hour_23',
+          'sensor.nws_api_forecast_hour_24',
+          'sensor.nws_api_forecast_hour_25',
+          'sensor.nws_api_forecast_hour_26',
+          'sensor.nws_api_forecast_hour_27',
+          'sensor.nws_api_forecast_hour_28',
+          'sensor.nws_api_forecast_hour_29',
+          'sensor.nws_api_forecast_hour_30',
+          'sensor.nws_api_forecast_hour_31',
+          'sensor.nws_api_forecast_hour_32',
+          'sensor.nws_api_forecast_hour_33',
+          'sensor.nws_api_forecast_hour_34',
+          'sensor.nws_api_forecast_hour_35'
+        ] -%}
+        {%- for sensor in sensors -%}
+            {% set tsd = { 'datetime': state_attr(sensor,'startTime'),
+                       'is_daytime': state_attr(sensor,'isDaytime'),
+                       'condition': cond(state_attr(sensor,'shortForecast'),state_attr(sensor,'isDaytime')),
+                       'temperature': (state_attr(sensor,'temperature')-32)*(5/9),
+                       'humidity': state_attr(sensor,'relativeHumidity').value,
+                       'precipitation_probability': state_attr(sensor,'probabilityOfPrecipitation').value,
+                       'dew_point': (state_attr(sensor,'dewpoint').value)*(9/5)+32
+                     } -%}
+            {% set ns.forecast = ns.forecast + [tsd] -%}
+        {% endfor -%}
+        {{ ns.forecast }}
     attribution_template: "Data from Station {{ state_attr('sensor.nws_api_station','stationIdentifier') }}-{{ state_attr('sensor.nws_api_station','name') }}"
