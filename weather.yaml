@@ -112,7 +112,19 @@
           'sensor.nws_api_forecast_hour_32',
           'sensor.nws_api_forecast_hour_33',
           'sensor.nws_api_forecast_hour_34',
-          'sensor.nws_api_forecast_hour_35'
+          'sensor.nws_api_forecast_hour_35',
+          'sensor.nws_api_forecast_hour_36',
+          'sensor.nws_api_forecast_hour_37',
+          'sensor.nws_api_forecast_hour_38',
+          'sensor.nws_api_forecast_hour_39',
+          'sensor.nws_api_forecast_hour_40',
+          'sensor.nws_api_forecast_hour_41',
+          'sensor.nws_api_forecast_hour_42',
+          'sensor.nws_api_forecast_hour_43',
+          'sensor.nws_api_forecast_hour_44',
+          'sensor.nws_api_forecast_hour_45',
+          'sensor.nws_api_forecast_hour_46',
+          'sensor.nws_api_forecast_hour_47'
         ] -%}
         {%- for sensor in sensors -%}
             {% set tsd = { 'datetime': state_attr(sensor,'startTime'),
