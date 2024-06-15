@@ -138,4 +138,6 @@
             {% set ns.forecast = ns.forecast + [tsd] -%}
         {% endfor -%}
         {{ ns.forecast }}
-    attribution_template: "Data from Station {{ state_attr('sensor.nws_api_station','stationIdentifier') }}-{{ state_attr('sensor.nws_api_station','name') }}"
+    attribution_template: "Observations at {{ state_attr('sensor.nws_api_current','timestamp') | as_datetime | as_local }} from Station {{ state_attr('sensor.nws_api_station','stationIdentifier') }}-{{ state_attr('sensor.nws_api_station','name') }}"
+    
+    

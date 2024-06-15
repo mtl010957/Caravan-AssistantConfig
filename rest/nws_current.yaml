@@ -131,4 +131,5 @@
           - "precipitationLastHour"
           - "windChill"
           - "heatIndex"
+          - "timestamp"
 
