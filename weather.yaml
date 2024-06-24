@@ -66,9 +66,7 @@
                        'is_daytime': state_attr(sensor,'isDaytime'),
                        'condition': cond(state_attr(sensor,'shortForecast'),state_attr(sensor,'isDaytime')),
                        'temperature': (state_attr(sensor,'temperature')-32)*(5/9),
-                       'humidity': state_attr(sensor,'relativeHumidity').value,
                        'precipitation_probability': state_attr(sensor,'probabilityOfPrecipitation').value,
-                       'dew_point': (state_attr(sensor,'dewpoint').value)*(9/5)+32
                      } -%}
             {% set ns.forecast = ns.forecast + [tsd] -%}
         {% endfor -%}
