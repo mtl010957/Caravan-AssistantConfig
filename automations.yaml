@@ -327,3 +327,24 @@
     data:
       addon: 2d5c2698_gpsd2mqtt
   mode: single
+- id: '1726542489791'
+  alias: Reset Water Usage
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.fresh_tank_liquid_level_sensor_1
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  condition: []
+  action:
+  - action: persistent_notification.create
+    metadata: {}
+    data:
+      message: Water Usage Reset
+      title: 'Water Usage Reset '
+  mode: single
