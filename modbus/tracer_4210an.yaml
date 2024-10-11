@@ -2,7 +2,8 @@
   - type: serial
     name: EPEVER
     method: rtu
-    port: /dev/ttyUSB0
+#    port: /dev/ttyUSB0
+    port: /dev/ttyACM1
     baudrate: 115200
     stopbits: 1
     bytesize: 8
