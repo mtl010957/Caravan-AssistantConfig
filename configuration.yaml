@@ -10,6 +10,8 @@ frontend:
 
 recorder: !include recorder.yaml
 
+arvee:
+
 automation: !include automations.yaml
 #command_line: !include_dir_merge_list command_line
 #modbus: !include_dir_merge_list modbus
