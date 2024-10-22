@@ -327,24 +327,58 @@
     data:
       addon: 2d5c2698_gpsd2mqtt
   mode: single
-- id: '1726542489791'
-  alias: Reset Water Usage
+- id: '1729611940368'
+  alias: Solar Controller MT50 Disable Night
   description: ''
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: numeric_state
     entity_id:
-    - binary_sensor.fresh_tank_liquid_level_sensor_1
-    from: 'off'
-    to: 'on'
+    - sensor.solar_array_input_voltage
     for:
       hours: 0
-      minutes: 1
+      minutes: 5
       seconds: 0
-  condition: []
-  action:
-  - action: persistent_notification.create
+    below: 0.1
+  conditions: []
+  actions:
+  - action: switch.turn_on
     metadata: {}
-    data:
-      message: Water Usage Reset
-      title: 'Water Usage Reset '
+    data: {}
+    target:
+      entity_id: switch.solar_mt50_disable
+  mode: single
+- id: '1729612096924'
+  alias: Solar Controller MT50 Enable Day
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.solar_array_input_voltage
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    above: 0.1
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.solar_mt50_disable
+  mode: single
+- id: '1729623903274'
+  alias: Set Timezone By GPS Location
+  description: ''
+  triggers:
+  - trigger: zone
+    entity_id: device_tracker.gps_location
+    zone: zone.home
+    event: enter
+  conditions: []
+  actions:
+  - action: arvee.set_geo_timezone
+    data_template:
+      latitude: '{{ states(''sensor.gps_latitude'') }}'
+      longitude: '{{ states(''sensor.gps_longitude'') }}'
   mode: single
