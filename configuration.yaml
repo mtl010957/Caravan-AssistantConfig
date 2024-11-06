@@ -10,6 +10,11 @@ frontend:
 
 recorder: !include recorder.yaml
 
+# Need to add build tools to HA container for arvee to load
+# docker exec -it homeassistant /bin/bash
+# apk add build-base
+# then
+# docker restart homeassistant
 arvee:
 
 automation: !include automations.yaml
