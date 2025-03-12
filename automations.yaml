@@ -387,6 +387,86 @@
   actions:
   - action: arvee.set_geo_timezone
     data_template:
-      latitude: '{{ states(''sensor.gps_latitude'') }}'
-      longitude: '{{ states(''sensor.gps_longitude'') }}'
+      latitude: '{{ states(''sensor.gps_latitude'') | float }}'
+      longitude: '{{ states(''sensor.gps_longitude'') | float }}'
+  mode: single
+- id: '1733164474988'
+  alias: Winterized
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.water_pump_signal
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+  conditions: []
+  actions:
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.water_pump_toggle
+  mode: single
+- id: '1734699894612'
+  alias: Toggle Bluetooth if RSSI Unavailable 048
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.gj_12v100ah_0526_048_rssi
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.gj_12v100ah_0526_048_enable_bluetooth_connection
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.gj_12v100ah_0526_048_enable_bluetooth_connection
+  mode: single
+- id: '1734700073063'
+  alias: Toggle Bluetooth if RSSI Unavailable 161
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.gj_12v100ah_0526_161_rssi
+    to: unavailable
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.gj_12v100ah_0526_161_enable_bluetooth_connection
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.gj_12v100ah_0526_161_enable_bluetooth_connection
   mode: single
