@@ -338,7 +338,7 @@
       hours: 0
       minutes: 5
       seconds: 0
-    below: 5
+    below: 7
   - trigger: state
     entity_id:
     - sensor.solar_array_input_voltage
@@ -366,7 +366,7 @@
       hours: 0
       minutes: 5
       seconds: 0
-    above: 5
+    above: 7
   conditions: []
   actions:
   - action: switch.turn_off
@@ -469,4 +469,250 @@
     data: {}
     target:
       entity_id: switch.gj_12v100ah_0526_161_enable_bluetooth_connection
+  mode: single
+- id: '1744645912070'
+  alias: Level Sensor Roll Trimmed MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.level_sensor_roll_trimmed
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: true
+      qos: '0'
+      retain: true
+      topic: dm18mpu/sensor/roll/trimmed
+      payload: '{{ states("sensor.level_sensor_roll_trimmed") }}'
+  mode: single
+- id: '1744647455259'
+  alias: Level Sensor Pitch Trimmed MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.level_sensor_pitch_trimmed
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: true
+      qos: '0'
+      retain: true
+      topic: dm18mpu/sensor/pitch/trimmed
+      payload: '{{ states("sensor.level_sensor_pitch_trimmed") }}'
+  mode: single
+- id: '1744757283442'
+  alias: Level Sensor Right Front Drop MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.right_front_drop
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: true
+      qos: '0'
+      retain: true
+      topic: dm18mpu/sensor/drop/front/right
+      payload: '{{ states("sensor.right_front_drop") }}'
+  mode: single
+- id: '1744757355531'
+  alias: Level Sensor Left Front Drop MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.left_front_drop
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: true
+      qos: '0'
+      retain: true
+      topic: dm18mpu/sensor/drop/front/left
+      payload: '{{ states("sensor.left_front_drop") }}'
+  mode: single
+- id: '1744757409784'
+  alias: Level Sensor Left Rear Drop MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.left_rear_drop
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: true
+      qos: '0'
+      retain: true
+      topic: dm18mpu/sensor/drop/rear/left
+      payload: '{{ states("sensor.left_rear_drop") }}'
+  mode: single
+- id: '1744757465608'
+  alias: Level Sensor Right Rear Drop MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.right_rear_drop
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    metadata: {}
+    data:
+      evaluate_payload: true
+      qos: '0'
+      retain: true
+      topic: dm18mpu/sensor/drop/rear/right
+      payload: '{{ states("sensor.right_rear_drop") }}'
+  mode: single
+- id: '1745291570389'
+  alias: WiCAN Engine Coolant Temp MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_05_enginecoolanttemp
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/05_enginecoolanttemp
+      payload: '{{ states("sensor.wican_05_enginecoolanttemp") }}'
+  mode: single
+- id: '1745294444319'
+  alias: WiCAN Control Module Volt MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_42_controlmodulevolt
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/42_controlmodulevolt
+      payload: '{{ states("sensor.wican_42_controlmodulevolt") }}'
+  mode: single
+- id: '1745295183916'
+  alias: WiCAN Intake Air Temperature MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_0f_intakeairtemperature
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/0f_intakeairtemperature
+      payload: '{{ states("sensor.wican_0f_intakeairtemperature") }}'
+  mode: single
+- id: '1745337203039'
+  alias: WiCAN Ambient Air Temp MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_46_ambientairtemp
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/46_ambientairtemp
+      payload: '{{ states("sensor.wican_46_ambientairtemp") }}'
+  mode: single
+- id: '1745337912240'
+  alias: WiCAN Calc Engine Load MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_04_calcengineload
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/04_calcengineload
+      payload: '{{ states("sensor.wican_04_calcengineload") }}'
+  mode: single
+- id: '1745338007205'
+  alias: WiCAN Throttle Position MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_11_throttleposition
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/11_throttleposition
+      payload: '{{ states("sensor.wican_11_throttleposition") }}'
+  mode: single
+- id: '1745875797819'
+  alias: WiCAN Trans Temperature MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_b010_transtemperature
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/b010_transtemperature
+      payload: '{{ states("sensor.wican_b010_transtemperature") }}'
+  mode: single
+- id: '1745877849302'
+  alias: Dash Display Dim
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.dash_display_board_ldr
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data_template:
+      brightness_pct: '{{ (1-(states("sensor.dash_display_board_ldr")|float()-0.08))*60.0+40.0
+        }}
+
+        '
+    target:
+      entity_id: light.dash_display_backlight
   mode: single
