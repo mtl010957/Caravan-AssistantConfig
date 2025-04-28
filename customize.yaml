@@ -1,0 +1,16 @@
+sensor.wican_b010_transtemperature:
+  unit_of_measurement: "°C"
+  state_class: measurement
+  device_class: temperature
+sensor.wican_46_ambientairtemp:
+  unit_of_measurement: "°C"
+  state_class: measurement
+  device_class: temperature
+sensor.wican_05_enginecoolanttemp:
+  unit_of_measurement: "°C"
+  state_class: measurement
+  device_class: temperature
+sensor.wican_0f_intakeairtemperature:
+  unit_of_measurement: "°C"
+  state_class: measurement
+  device_class: temperature
