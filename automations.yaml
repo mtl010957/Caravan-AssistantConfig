@@ -661,7 +661,7 @@
       qos: '0'
       retain: true
       topic: wican/dc06753cc7d1/can/04_calcengineload
-      payload: '{{ states("sensor.wican_04_calcengineload") }}'
+      payload: '{{ states("sensor.wican_04_calcengineload")|round(0) }}'
   mode: single
 - id: '1745338007205'
   alias: WiCAN Throttle Position MQTT
@@ -686,7 +686,7 @@
   triggers:
   - trigger: state
     entity_id:
-    - sensor.wican_b010_transtemperature
+    - sensor.wican_pcm_transmission_temp
   conditions: []
   actions:
   - action: mqtt.publish
@@ -695,7 +695,7 @@
       qos: '0'
       retain: true
       topic: wican/dc06753cc7d1/can/b010_transtemperature
-      payload: '{{ states("sensor.wican_b010_transtemperature") }}'
+      payload: '{{ states("sensor.wican_pcm_transmission_temp") }}'
   mode: single
 - id: '1745877849302'
   alias: Dash Display Dim
@@ -715,4 +715,28 @@
         '
     target:
       entity_id: light.dash_display_backlight
+  mode: single
+- id: '1745957411729'
+  alias: Notify Email Caravan Status
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    minutes: '15'
+    hours: '*'
+    seconds: '0'
+  conditions: []
+  actions:
+  - action: notify.michael_t_loeffler_gmail_com
+    metadata: {}
+    data:
+      target: mtl010957@comcast.net
+      title: Caravan Status
+      message: "Battery = {{ states('sensor.gj_12v200ah_state_of_charge')|string }}
+        %<br> Battery Power = {{ states('sensor.gj_12v200ah_power')|string }} W<br>
+        Solar Power = {{ states('sensor.solar_charging_power')|string }} W<br> Solar
+        Energy Today = {{ states('sensor.solar_generated_energy_today')|string }}
+        Wh<br> Position = {{ states('sensor.gps_latitude')|string }} lat, {{\n  states('sensor.gps_longitude')|string
+        }} lon<br>\nInside Temp = {{ states('sensor.bedroom_climate_temperature')|string
+        }} °F<br> Outside Temp = {{ states('sensor.outside_caravan_temperature')|string
+        }} °F<br>"
   mode: single
