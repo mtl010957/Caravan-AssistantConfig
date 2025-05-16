@@ -704,7 +704,10 @@
   - trigger: state
     entity_id:
     - sensor.dash_display_board_ldr
-  conditions: []
+  conditions:
+  - condition: state
+    entity_id: light.dash_display_backlight
+    state: 'on'
   actions:
   - action: light.turn_on
     metadata: {}
@@ -739,4 +742,101 @@
         }} lon<br>\nInside Temp = {{ states('sensor.bedroom_climate_temperature')|string
         }} °F<br> Outside Temp = {{ states('sensor.outside_caravan_temperature')|string
         }} °F<br>"
+  mode: single
+- id: '1747232214152'
+  alias: WiCAN CmdThrottle Actuator MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_4c_cmdthrottleact
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/4c_cmdthrottleact
+      payload: '{{ states("sensor.wican_4c_cmdthrottleact") }}'
+  mode: single
+- id: '1747329778659'
+  alias: WiCAN Engine Oil Temp MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_engine_oil_temp
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/engine_oil_temp
+      payload: '{{ states("sensor.wican_engine_oil_temp") }}'
+  mode: single
+- id: '1747329846435'
+  alias: WiCAN Engine Oil Pres MQTT
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.wican_engine_oil_pres
+  conditions: []
+  actions:
+  - action: mqtt.publish
+    data:
+      evaluate_payload: false
+      qos: '0'
+      retain: true
+      topic: wican/dc06753cc7d1/can/engine_oil_pres
+      payload: '{{ states("sensor.wican_engine_oil_pres") }}'
+  mode: single
+- id: '1747433519069'
+  alias: Dash Display Dark Mode On
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.dash_display_board_ldr
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+    above: 1
+  conditions:
+  - condition: state
+    entity_id: light.dash_display_backlight
+    state: 'on'
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.dash_display_dark
+  mode: single
+- id: '1747433601281'
+  alias: Dash Display Dark Mode Off
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.dash_display_board_ldr
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+    below: 1
+  conditions:
+  - condition: state
+    entity_id: light.dash_display_backlight
+    state: 'on'
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.dash_display_dark
   mode: single
