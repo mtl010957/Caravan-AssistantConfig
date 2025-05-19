@@ -612,40 +612,6 @@
       topic: wican/dc06753cc7d1/can/42_controlmodulevolt
       payload: '{{ states("sensor.wican_42_controlmodulevolt") }}'
   mode: single
-- id: '1745295183916'
-  alias: WiCAN Intake Air Temperature MQTT
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - sensor.wican_0f_intakeairtemperature
-  conditions: []
-  actions:
-  - action: mqtt.publish
-    data:
-      evaluate_payload: false
-      qos: '0'
-      retain: true
-      topic: wican/dc06753cc7d1/can/0f_intakeairtemperature
-      payload: '{{ states("sensor.wican_0f_intakeairtemperature") }}'
-  mode: single
-- id: '1745337203039'
-  alias: WiCAN Ambient Air Temp MQTT
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - sensor.wican_46_ambientairtemp
-  conditions: []
-  actions:
-  - action: mqtt.publish
-    data:
-      evaluate_payload: false
-      qos: '0'
-      retain: true
-      topic: wican/dc06753cc7d1/can/46_ambientairtemp
-      payload: '{{ states("sensor.wican_46_ambientairtemp") }}'
-  mode: single
 - id: '1745337912240'
   alias: WiCAN Calc Engine Load MQTT
   description: ''
@@ -662,23 +628,6 @@
       retain: true
       topic: wican/dc06753cc7d1/can/04_calcengineload
       payload: '{{ states("sensor.wican_04_calcengineload")|round(0) }}'
-  mode: single
-- id: '1745338007205'
-  alias: WiCAN Throttle Position MQTT
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - sensor.wican_11_throttleposition
-  conditions: []
-  actions:
-  - action: mqtt.publish
-    data:
-      evaluate_payload: false
-      qos: '0'
-      retain: true
-      topic: wican/dc06753cc7d1/can/11_throttleposition
-      payload: '{{ states("sensor.wican_11_throttleposition") }}'
   mode: single
 - id: '1745875797819'
   alias: WiCAN Trans Temperature MQTT
@@ -742,23 +691,6 @@
         }} lon<br>\nInside Temp = {{ states('sensor.bedroom_climate_temperature')|string
         }} °F<br> Outside Temp = {{ states('sensor.outside_caravan_temperature')|string
         }} °F<br>"
-  mode: single
-- id: '1747232214152'
-  alias: WiCAN CmdThrottle Actuator MQTT
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - sensor.wican_4c_cmdthrottleact
-  conditions: []
-  actions:
-  - action: mqtt.publish
-    data:
-      evaluate_payload: false
-      qos: '0'
-      retain: true
-      topic: wican/dc06753cc7d1/can/4c_cmdthrottleact
-      payload: '{{ states("sensor.wican_4c_cmdthrottleact") }}'
   mode: single
 - id: '1747329778659'
   alias: WiCAN Engine Oil Temp MQTT
