@@ -338,7 +338,7 @@
       hours: 0
       minutes: 5
       seconds: 0
-    below: 7
+    below: 10
   - trigger: state
     entity_id:
     - sensor.solar_array_input_voltage
@@ -366,7 +366,7 @@
       hours: 0
       minutes: 5
       seconds: 0
-    above: 7
+    above: 12
   conditions: []
   actions:
   - action: switch.turn_off
@@ -771,4 +771,21 @@
     data: {}
     target:
       entity_id: switch.dash_display_dark
+  mode: single
+- id: '1748473998595'
+  alias: 'Water Pump Buttons '
+  description: ''
+  triggers:
+  - device_id: 9c42b937262f6539c5481b1ba1a3abe5
+    domain: bthome
+    type: button
+    subtype: press
+    trigger: device
+  conditions: []
+  actions:
+  - action: button.press
+    metadata: {}
+    data: {}
+    target:
+      entity_id: button.water_pump_toggle
   mode: single
