@@ -781,7 +781,15 @@
     type: button
     subtype: press
     trigger: device
-  conditions: []
+  - device_id: 341d26c5559b686bb4d8794d6d0bbb43
+    domain: bthome
+    type: button
+    subtype: press
+    trigger: device
+  conditions:
+  - condition: state
+    entity_id: automation.winterized
+    state: 'off'
   actions:
   - action: button.press
     metadata: {}
