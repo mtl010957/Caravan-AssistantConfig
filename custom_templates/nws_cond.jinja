@@ -27,7 +27,8 @@
     'Thunderstorm' in state -%}
     lightning-rainy
 {%- elif
-    'Rain' in state -%}
+    'Rain' in state or
+    'Drizzle' in state -%}
     rainy
 {%- elif
     'Mostly cloudy and windy' in state or
