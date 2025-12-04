@@ -29,4 +29,4 @@ rest: !include_dir_merge_list rest
 
 shell_command: !include shell_command.yaml
 
-weather: !include weather.yaml
+template: !include_dir_merge_list template
